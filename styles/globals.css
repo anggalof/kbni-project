@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  font-family: 'Urbanist', sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  )
+  rgb(var(--background-start-rgb));
+}
+
+
+.container {
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid #ffffff;
+  border-top: 4px solid #02AEEF;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear infinite;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Action */
+
+.action-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+/* Modal */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.modal-content {
+  background-color: #EDEFE3;
+  color: #22231F;
+  border-radius: 5px;
+  padding: 20px;
+  width: 400px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-close-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.modal-body {
+  padding: 15px 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #22231F;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 0;
+}
+
+.btn-modal {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-modal:hover {
+  background-color: #ddd;
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+
+/* Toast */
+
+.Toastify__toast-container {
+  top: 2.5rem;
+  z-index: 999999999;
+}
+
+.Toastify__toast--error {
+  border: 1px solid #912018;
+  margin: 1.5rem;
+  border-radius: 15px;
+}
+
+.Toastify__toast--success {
+  border: 1px solid #214405;
+  margin: 1.5rem;
+  border-radius: 15px;
+}
+
+.Toastify__toast-icon {
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  .Toastify__toast-container {
+    top: 4rem;
+  }
+
+  .Toastify__toast--success {
+    border: none;
+    margin: 0;
+  }
+
+  .Toastify__toast--error {
+    border: none;
+    margin: 0;
+  }
+}
+
+.custom-toast-icon {
+  margin-right: 10px; /* Atur jarak antara ikon dan judul */
+}
+
+.custom-toast-content {
+  flex: 1;
+  margin: 1rem 0;
+}
+
+.custom-toast-title {
+  display: flex;
+  align-items: center;
+}
+
+.custom-toast-title strong {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.custom-toast-description {
+  margin-top: 5px;
+  margin-left: 1.5rem;
+  font-size: 12px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

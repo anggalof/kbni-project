@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  display: inline-block;
+  width: 100% !important;
+}
+
+.dateinput {
+  padding-right: 30px;
+}
+
+.calendaricon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #74766A;
+  font-size: 14px;
+}
