@@ -7,9 +7,22 @@ import Button from '../../components/element/Button';
 import withAuth from '../../utils/auth';
 import { mockData } from '../../service/mockData';
 import { TExpenses } from '../../service/type';
+import { downloadCsv, CsvColumn } from "../../library/csv";
+
+const columns: CsvColumn[] = [
+  {
+    key: "label",
+    title: "Category Name"
+  },
+  {
+    key: "totalExpensesPerMonth",
+    title: "Expenses"
+  },
+];
 
 const Dashboard: React.FC<{ expensesData: TExpenses[] }> = ({ expensesData }) => {
-  const [openDropdownId, setOpenDropdownId] = useState<number | null>(null)
+  const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
+  const [ isProcessing, setIsProcessing ] = useState( false );
 
   const toggleDropdown = (id: any) => {
     setOpenDropdownId(openDropdownId === id ? null : id);
@@ -17,6 +30,18 @@ const Dashboard: React.FC<{ expensesData: TExpenses[] }> = ({ expensesData }) =>
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>, name: string, id: any) => {
     e.preventDefault();
+  };
+  
+  const onClickDownload = async () => {
+    setIsProcessing( true );
+
+    const data = expensesData;
+
+    await new Promise( resolve => setTimeout( resolve, 3000 ) );
+
+    downloadCsv( data, columns, "Download Expenses Data" );
+
+    setIsProcessing( false );
   };
 
   return (
@@ -40,14 +65,16 @@ const Dashboard: React.FC<{ expensesData: TExpenses[] }> = ({ expensesData }) =>
         toggleDropdown={toggleDropdown}
         handleDelete={handleDelete}
         openDropdownId={openDropdownId} />
+
+      <div onClick={onClickDownload} className="mb-20">
+        <Button title={isProcessing ? 'Please wait...' : 'Download CSV'} />
+      </div>
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  // Ambil data pengeluaran dari API atau database
   const expensesData: TExpenses[] = mockData;
-
   return {
     props: {
       expensesData,
